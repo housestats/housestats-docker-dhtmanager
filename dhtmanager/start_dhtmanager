@@ -1,0 +1,15 @@
+#!/bin/sh
+
+: ${DHTMANAGER_PORT:=2112}
+
+cat > /creds.cfg <<EOF
+DHTMANAGER_DB_HOST = "${DHTMANAGER_DB_HOST:-localhost}"
+DHTMANAGER_DB_USER = "${DHTMANAGER_DB_USER}"
+DHTMANAGER_DB_PASS = "${DHTMANAGER_DB_PASS}"
+DHTMANAGER_DB_NAME = "${DHTMANAGER_DB_NAME:-devices}"
+EOF
+
+export DHTMANAGER_SETTINGS=/creds.cfg
+exec uwsgi --http-socket :${DHTMANAGER_PORT} \
+	--plugin python3 --virtualenv /app \
+	--mount /=dhtmanager.webapp:app

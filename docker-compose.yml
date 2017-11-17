@@ -9,3 +9,8 @@ services:
     ports:
       - "2112:2112"
     restart: always
+    environment:
+      DHTMANAGER_DB_HOST: "$DHTMANAGER_DB_HOST"
+      DHTMANAGER_DB_USER: "$DHTMANAGER_DB_USER"
+      DHTMANAGER_DB_PASS: "$DHTMANAGER_DB_PASS"
+      DHTMANAGER_DB_NAME: "$DHTMANAGER_DB_NAME"
