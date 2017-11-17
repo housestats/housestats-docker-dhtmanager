@@ -1,0 +1,11 @@
+version: "3"
+
+services:
+
+  dhtmanager:
+    image: dhtmanager
+    build:
+      context: dhtmanager
+    ports:
+      - "2112:2112"
+    restart: always
